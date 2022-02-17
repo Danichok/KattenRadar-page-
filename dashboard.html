@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KattenRadar - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <link rel="stylesheet" href="style/leaflet-gesture-handling.min.css">
+    <link rel="stylesheet" href="style/dashboard_style.css">
+    <link rel="stylesheet" href="style/default_styles.css">
+</head>
+
+<body>
+    <!-- STICKY HEADER -->
+    <div class="sticky__container">
+        <div class="header" id="sticky__header">
+            <ul>
+                <li>
+                    <a href="/"> <img src="img/logotype.svg" alt="Logotype"></a>
+                </li>
+                <li>
+                    <ul class="header__menu_list">
+                        <li>
+                            <a href="/home">Home</a>
+                        </li>
+                        <li>
+                            <a href="/searches">Huidige Zoekacties</a>
+                        </li>
+                        <li>
+                            <a href="/about">Over ons</a>
+                        </li>
+                        <li class="lang__wrapper" id="sticky__lang__wrapper">
+                            <div class="header__current_lang">
+                                <div><img class="icon__flag" id="icon__flag_sticky" src="img/icons/flag_dutch.svg" alt="Flag"><span id="language_sticky">NL</span><img class="header__down" src="img/icons/header_down.svg" alt="Down"></div>
+                            </div>
+                            <div class="header__lang">
+                                <div><img class="icon__flag" id="Dutch" src="img/icons/flag_dutch.svg" alt="Flag"> NL
+                                </div>
+                                <div><img class="icon__flag" id="English" src="img/icons/flag_eng.svg" alt="Flag"> EN
+                                </div>
+                                <div><img class="icon__flag" id="Deutsch" src="img/icons/flag_deu.svg" alt="Flag"> DE
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- STICKY HEADER END -->
+    <div class="blur__wrapper" style="filter: blur(0px)">
+        <!-- HEADER -->
+        <div class="header default_header">
+            <ul>
+                <li>
+                    <a href="/"> <img src="img/logotype.svg" alt="Logotype"></a>
+                </li>
+                <li>
+                    <ul class="header__menu_list">
+                        <li>
+                            <a href="/home">Home</a>
+                        </li>
+                        <li>
+                            <a href="/searches">Huidige Zoekacties</a>
+                        </li>
+                        <li>
+                            <a href="/about">Over ons</a>
+                        </li>
+                        <li class="lang__wrapper">
+                            <div class="header__current_lang">
+                                <div><img class="icon__flag" id="icon__flag" src="img/icons/flag_dutch.svg" alt="Flag"><span id="language">NL</span><img class="header__down" src="img/icons/header_down.svg" alt="Down"></div>
+                            </div>
+                            <div class="header__lang">
+                                <div><img class="icon__flag" id="Dutch" src="img/icons/flag_dutch.svg" alt="Flag"> NL
+                                </div>
+                                <div><img class="icon__flag" id="English" src="img/icons/flag_eng.svg" alt="Flag"> EN
+                                </div>
+                                <div><img class="icon__flag" id="Deutsch" src="img/icons/flag_deu.svg" alt="Flag"> DE
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- HEADER END -->
+        <!-- MOBILE HEADER -->
+        <div class="mb__header">
+            <div class="mb__header_top">
+                <img src="img/logotype.svg" alt="Logotype">
+                <div class="mb__header_icons">
+                    <a href="#"><img src="img/icon_facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="img/icon_insta.svg" alt="Instagram"></a>
+                </div>
+                <div class="mb__header_lang">
+                    <img class="mb__header_icon" src="img/icons/flag_dutch.svg" alt="Mobile Lang">
+                    <p><img src="img/icons/down.svg" alt="Mobile Lang Down"></p>
+                </div>
+            </div>
+            <div class="mb__header_menu">
+                <a href="#" class="header__menu_active">Home</a>
+                <a href="#">Huidige Zoekacties</a>
+                <a href="#">Over ons</a>
+            </div>
+            <div class="mb__header_language">
+                <div class="mb__header_block" id="lang_Dutch">
+                    <img src="img/icons/flag_dutch.svg" id="image__Dutch" alt="Lang">
+                    <p>NL</p>
+                </div>
+                <div class="mb__header_block" id="lang_English">
+                    <img src="img/icons/flag_eng.svg" id="image__English" alt="Lang">
+                    <p>EN</p>
+                </div>
+                <div class="mb__header_block" id="lang_Deutsch">
+                    <img src="img/icons/flag_deu.svg" id="image__Deutsch" alt="Lang">
+                    <p>DE</p>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE HEADER END -->
+
+        <!-- MOBILE STICKY HEADER -->
+        <div class="mb__header mb__header_sticky">
+            <div class="mb__header_top">
+                <img src="img/logotype.svg" alt="Logotype">
+                <div class="mb__header_icons">
+                    <a href="#"><img src="img/icon_facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="img/icon_insta.svg" alt="Instagram"></a>
+                </div>
+                <div class="mb__header_lang">
+                    <img src="img/mb_lang.svg" alt="Mobile Lang">
+                </div>
+            </div>
+            <div class="mb__header_menu">
+                <a href="#">Home</a>
+                <a href="#">Huidige Zoekacties</a>
+                <a href="#">Over ons</a>
+            </div>
+            <button class="mb__sticky_header_button">Meteen zoekactie starten</button>
+        </div>
+        <!-- MOBILE HEADER END -->
+
+        <!-- DASHBOARD MAIN -->
+
+        <section class="dashboard">
+            <div class="dash__container">
+                <div class="dash__title">
+                    <p>Hallo <span></span></p>
+                    <button class="catfound__button"><img src="img/dashboard/icons/cancel.svg" alt="Cancel">Stop zoekactie</button>
+                </div>
+                <div class="dash__controls">
+                    <div class="dash__controls_item dash__status">
+                        <div class="dash__controls_header">
+                            <p>Status</p>
+                        </div>
+                        <div class="dash__controls_step">
+                            <div class="dash_step" id="dash_step_1">
+                                <div class="dash__step_circle">1</div>
+                                <p>In beoordeling</p>
+                            </div>
+                            <div class="dash_step top__step step__incative" id="dash_step_2">
+                                <div class="dash__step_circle">2</div>
+                                <p>Getoond worden</p>
+                            </div>
+                            <div class="dash_step step__incative" id="dash_step_3">
+                                <div class="dash__step_circle">3</div>
+                                <p>Doelbereik behaald</p>
+                            </div>
+                        </div>
+                        <div class="dash__wrapper">
+                            <div class="dash__steps_info">
+                                <div class="dash__info">
+                                    <div class="dash__info_header">
+                                        <div class="dash__info_circle">1</div>
+                                        <p class="dash__info__title">In beoordeling</p>
+                                        <div class="dash__info_time">
+                                            <img src="img/dashboard/icons/clock.svg" alt="Clock">
+                                            <p class="dash__info_1">2-4 uur</p>
+                                            <p class="dash__info_2">weekend: 12-24 uur</p>
+                                        </div>
+                                    </div>
+                                    <p class="dash__info_desc">De zoekactie is geplaatst. Nu is het wachten op de goedkeuring van de advertenties door Facebook en Instagram. </p>
+                                </div>
+                                <div class="dash__info">
+                                    <div class="dash__info_header">
+                                        <div class="dash__info_circle">2</div>
+                                        <p class="dash__info__title">Getoond worden</p>
+                                    </div>
+                                    <p class="dash__info_desc">Facebook en Instagram hebben de versnelde promotie goedgekeurd! Je bericht komt nu langs op de feed van duizenden van je buurtgenoten. </p>
+                                </div>
+                                <div class="dash__info">
+                                    <div class="dash__info_header">
+                                        <div class="dash__info_circle">3</div>
+                                        <p class="dash__info__title"><span class="targetReach"></span> buurtgenoten bereikt</p>
+                                    </div>
+                                    <p class="dash__info_desc" id="targetReach__text">Het vermist bericht van <span></span> heeft <span class="targetReach"></span> buurtgenoten bereikt. De zoekactie is nog te vinden op Facebook en Instagram, maar de versnelde promotie is afgelopen. Bij nieuwe tips stellen
+                                        we je meteen op de hoogte.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash__controls_item dash__ads">
+                        <div class="dash__controls_header" style="display: flex; justify-content: space-between;">
+                            <p>Uw advertenties</p>
+                            <p id="dash__edit_button" style="color: #F8A35B; margin-right: 20px; cursor: pointer;">Edit</p>
+                        </div>
+                        <div class="dash__ads_items">
+                            <a class="facebook_ad" href="#" target="_blank">
+                                <div class="dash__ad">
+                                    <div class="chat__right_phone dash__phone">
+                                        <img src="" id="fb__phone" alt="FB">
+                                        <p class="chat__fb_text">Mogelijk opgesloten in schuren of bij gebou-wen. Erg mens vriendelijke kat makkelijk. Opgesloten in schuren of bij gebouwen. Erg mens vriendelijke kat makkelijk</p>
+                                    </div>
+                                    <button>Check het op Facebook</button></a>
+                            </div>
+                            </a>
+                            <a id="insta_ad" href="#" target="_blank">
+                                <div class="dash__ad">
+                                    <div class="chat__right_phone dash__phone">
+                                        <img src="" id="insta__phone" alt="FB">
+                                        <p class="chat__inst_text">Mogelijk opgesloten in schuren of bij gebou-wen. Erg mens vriendelijke kat makkelijk. Opgesloten in schuren of bij gebouwen. Erg mens vriendelijke kat makkelijk</p>
+                                    </div>
+                                    <button>Check het op Instagram</button>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="dash__controls_item dash__tips">
+                        <div class="dash__controls_header">
+                            <p>Tips</p>
+                        </div>
+                        <div class="tips__list">
+                        </div>
+                    </div>
+                    <div class="dash__controls_item dash__stats">
+                        <div class="dash__controls_header">
+                            <p>Statistieken</p>
+                        </div>
+                        <div class="dash__stats_list">
+                            <div class="dash__stats_link stats__active" id="views_link">
+                                <img src="img/dashboard/icons/eye.svg " alt="">
+                                <p>Weergaven</p>
+                            </div>
+                            <div class="dash__stats_link" id="likes_link">
+                                <img src="img/dashboard/icons/heart.svg " alt="">
+                                <p>Vind-ik-leuks</p>
+                            </div>
+                            <div class="dash__stats_link" id="smiles_link">
+                                <img src="img/dashboard/icons/smile.svg " alt="">
+                                <p>Interacties</p>
+                            </div>
+                        </div>
+                        <div class="dash__stats_slider">
+
+                            <hr>
+                        </div>
+                        <div class="dash__stats_date">
+                            <div class="dash__stats_arrow" id="dash__arrow_left">
+                                <img src="img/dashboard/icons/arrow-left.svg" alt="">
+                            </div>
+                            <div>
+                                <h1>Week <span class="week__info">1</span> van zoekactie</h1>
+                                <p>November</p>
+                            </div>
+                            <div class="dash__stats_arrow" id="dash__arrow_right">
+                                <img src="img/dashboard/icons/arrow-right.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="canvas_block">
+                            <div class="canvas__wrapper">
+                                <canvas class="mychart" id="viewsChart"></canvas>
+                                <canvas class="mychart" id="likesChart"></canvas>
+                                <canvas class="mychart" id="smilesChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="dash__stats_info">
+                            <div class="views stats__active" id="views_link">
+                                <img src="img/dashboard/icons/eye.svg" alt="">
+                                <p><span></span> Views</p>
+                            </div>
+                            <div class="likes" id="likes_link">
+                                <img src="img/dashboard/icons/heart.svg" alt="">
+                                <p><span></span> Likes</p>
+                            </div>
+                            <div class="smiles">
+                                <img src="img/dashboard/icons/smile.svg" alt="">
+                                <p><span></span> Interactions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash__controls_item dash__map">
+                        <div class="dash__controls_header">
+                            <p>Krijg extra bereik</p>
+                        </div>
+                        <div class="map__header_content">
+                            <p>Hoe meer weergaven, hoe meer kans dat we iemand bereiken die СatName ziet lopen of in de tuin of schuur heeft zitten. Aangezien dit een uitbreiding is van een bestaande zoekactie krijg je 20% extra korting op elk pakket. </p>
+                            <hr>
+                        </div>
+                        <div class="dash__places">
+                            <div class="dash__places_lists">
+                                <div class="dash__places_items" style="display: flex; align-items: center;">
+                                    <div class="arrow">
+                                        <img src="img/dashboard/icons/arrow-left.svg" alt="">
+                                    </div>
+
+                                    <div class="arrow" style>
+                                        <img src="img/dashboard/icons/arrow-right.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="dash__places_button">
+                                    <button>Voeg locatie toe</button>
+                                </div>
+                            </div>
+                            <div class="dash__places_select" style="display: none;">
+                                <div class="dash__places__input">
+                                    <img src="img/icons/marker.svg" alt="Marker">
+                                    <input id="dash__location" type="text" class="search__map_adress" placeholder="Typ hier uw adres">
+                                    <!-- HIDDEN GOOGLE FORMS -->
+                                    <input type="hidden" placeholder="Apt, Suite, etc (optional)" />
+                                    <input type="hidden" placeholder="City" id="locality" />
+                                    <div class="half-input-container">
+                                        <input type="hidden" class="half-input" placeholder="State/Province" id="administrative_area_level_1" />
+                                        <input type="hidden" class="half-input" placeholder="Zip/Postal code" id="postal_code" />
+                                    </div>
+                                    <input type="hidden" placeholder="Country" id="country" />
+                                    <!-- END -->
+                                </div>
+                                <div class="dash__places_button">
+                                    <button class="select__new_zone">Voeg locatie toe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash__map_photo">
+                            <hr>
+                            <div id="dash_map"></div>
+                            <div class="search__map_center">
+                                <p class="search__map_radius">4000</p>
+                                <p>Weergaven</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="search__map_form">
+                            <div class="map__radius">
+                                <div class="map__radius_track">
+                                    <div class="map__radius_draggable">
+                                        <p class="range__km">1 km</p>
+                                        <hr>
+                                        <p class="range__price">29 €</p>
+                                    </div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                    <div class="map__radius_dot"></div>
+                                </div>
+                                <hr>
+                            </div>
+                            <button class="search__map_button" id="map__button_top">Betaal en start zoekactie</button>
+                        </div>
+                    </div>
+                    <div class="dash__controls_item dash__stop_search">
+                        <div class="dash__controls_header">
+                            <p>Ik heb mijn kat gevonden?</p>
+                        </div>
+                        <div class="dash__stop_button">
+                            <button>Stop zoekactie</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD END -->
+        <!-- FOOTER -->
+
+        <footer>
+            <div class="container">
+                <div class="footer__info">
+                    <img src="img/footer_logo.svg" alt="Footer Logo">
+                    <div class="footer__info_adress">
+                        <div>
+                            <img src="img/icons/email.svg" alt="email">
+                            <span><a href="mailto:info@kattenradar.nl" class="phone">info@kattenradar.nl</a></span>
+                        </div>
+                        <div>
+                            <img src="img/icons/phone.svg" alt="phone">
+                            <span><a class="phone" href="tel:+31627655321">+31 6 276 553 21</a></span>
+                        </div>
+                    </div>
+                    <div class="footer__info_adress">
+                        <div>
+                            <img src="img/icons/map_footer.svg" alt="map">
+                            <span>Amsterdam, Victorieplein 27a1, 1079 KM</span>
+                        </div>
+                        <div>
+                            <img src="img/icons/bag.svg" alt="bag">
+                            <span>KvK-nummer: 71505083</span>
+                        </div>
+                    </div>
+                    <div class="footer__info_links">
+                        <p class="footer_dashboard">Naar dashboard</p>
+                        <p class="footer_contact" href="#">Neem contact met ons op</p>
+                        <a href="#">KattenRadar Blog</a>
+                    </div>
+                </div>
+                <div class="footer_links">
+                    <a href="#">Terms of service</a>
+                    <a href="#">Privacy policy</a>
+                </div>
+                <p class="footer_bottom_text">© kattenradar, Inc. 2021. We love our users!</p>
+            </div>
+        </footer>
+        <!-- MOBILE FOOTER -->
+        <div class="mb_footer">
+            <div class="mb__footer_header">
+                <a href="#">Contact opnemen</a>
+                <a href="#">Naar dashboard</a>
+            </div>
+            <div class="mb__footer_info">
+                <div class="footer__info_adress">
+                    <div>
+                        <img src="img/icons/email.svg" alt="email">
+                        <span><a href="mailto:info@kattenradar.nl" class="phone">info@kattenradar.nl</a></span>
+                    </div>
+                    <div>
+                        <img src="img/icons/phone.svg" alt="phone">
+                        <span><a class="phone" href="tel:+31627655321">+31 6 276 553 21</a></span>
+                    </div>
+                </div>
+                <div class="footer__info_adress">
+                    <div>
+                        <img src="img/icons/map_footer.svg" alt="map">
+                        <span>Amsterdam, Victorieplein 27a1, 1079 KM</span>
+                    </div>
+                    <div>
+                        <img src="img/icons/bag.svg" alt="bag">
+                        <span>KvK-nummer: 71505083</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb__footer_foot">
+                <a href="#">Privacy policy</a>
+                <a href="#">Blog</a>
+                <a href="#">Terms of service</a>
+            </div>
+            <hr class="mb__footer_line">
+            <p class="mb__footer_text">© kattenradar, Inc. 2021. We love our users!</p>
+        </div>
+    </div>
+    <!-- FEEDBACK -->
+    <div class="feedback__popup">
+        <div class="feedback_close">
+            <img class="popup_close" src="img/homepage/close.svg" alt="Close">
+        </div>
+        <p>Neem contact op</p>
+        <div class="feedback__form">
+            <div class="feedback__form_block">
+                <p>Email <span> *</span></p>
+                <input type="email" id="form__email" placeholder="Email">
+            </div>
+            <div class="feedback__form_block">
+                <p>Telefoon</p>
+                <input type="phone" id="form__phone" placeholder="Telefoonnummer (optioneel)">
+            </div>
+        </div>
+        <div class="feedback__textarea">
+            <p>Bericht</p>
+            <textarea name="message" id="message"></textarea>
+        </div>
+        <input type="hidden" name="token" value="" id="token">
+        <p class="form__send_status">Your message has been successfully sent!</p>
+        <button class="feedback__send" class="g-recaptcha" data-sitekey="6LdBDO4dAAAAAHksjb-qcwb7j-Ke3cEJwkBgIF4C" data-callback='onSubmit' data-action='submitForm'>Versturen</button>
+        <p class="feedback__capcha_info">This site is protected by reCAPTCHA and the Google
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+    </div>
+    <!-- DASHBOARD POPUP -->
+    <div class="dashboard__popup" id="test">
+        <div class="feedback_close">
+            <img class="popup_close popup_close_dash" src="img/homepage/close.svg" alt="Close">
+        </div>
+        <div class="dashboard__popup_start">
+            <p class="dashboard__title">To dashboard</p>
+            <p class="dashboard__desc">Je kunt het dashboard van de zoekactie openen door op 'naar dashboard' te klikken in de emails van KattenRadar.</p>
+            <p class="dashboard__desc" style="opacity: 0.6;">Kan je het niet vinden? Vul hier je email of telefoonnummer in, en wij sturen je de link nogmaals toe.</p>
+
+            <input type="email" name="email" id="dashboardEmail" placeholder="Email of telefoonnummer">
+            <button id="dashboard__send">Ontvang link naar dashboard</button>
+        </div>
+        <div class="dashboard__popup_done" style="display: none;">
+            <p class="dashboard__title">Success!</p>
+            <p class="dashboard__desc">We hebben je de nieuwe link gestuurd, check je e-mail</p>
+            <button class="dashboard__top_button">Naar startpagina</button>
+        </div>
+
+        <div class="dashboard__popup_failed" style="display: none;">
+            <p class="dashboard__title">Failed!</p>
+            <p class="dashboard__desc">Deze e-mail heeft geen gekoppelde zoekopdrachten.</p>
+            <button id="dashboard__failed_repeat">Probeer het opnieuw</button>
+            <button class="dashboard__button dashboard__top_button">Naar startpagina</button>
+        </div>
+    </div>
+
+    <!-- CAT FOUND -->
+
+    <div class="catfound">
+        <div class="feedback_close">
+            <img class="popup_close popup_close_cat" src="img/homepage/close.svg" alt="Close">
+        </div>
+
+        <div class="catfound__block">
+            <p class="catfound__title">Wil je de zoekactie stoppen?</p>
+            <div class="catfound_button" style="display: flex; position: relative;">
+                <button class="catfound_orange"><svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="orange__path" d="M7.04964 11.6252C6.27119 12.3885 5.02479 12.3877 4.2473 11.6234L1.03795 8.46854C0.4676 7.90787 0.467599 6.98854 1.03794 6.42787C1.59465 5.8806 2.48728 5.8806 3.04399 6.42787L5.64761 8.98732L13.8149 0.983085C14.3719 0.437203 15.2634 0.437885 15.8196 0.984616C16.3905 1.54584 16.3899 2.46626 15.8183 3.02677L7.04964 11.6252Z" fill="white"/>
+                </svg> CATNAME is veilig thuis, stop de zoekactie</button>
+                <div class="catfound__button_tip">
+                    <p> We zullen op de sociale media posten dat de zoekopdracht succesvol was </p>
+                </div>
+            </div>
+
+            <div class="catfound_button" style="display: flex; position: relative;">
+                <button class="catfound_red catfound_2"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="red__path" d="M11.9729 3.08117C12.5402 2.51394 12.5402 1.59428 11.9729 1.02706C11.4057 0.459829 10.4861 0.459829 9.91883 1.02706L6.5 4.44589L3.08117 1.02706C2.51394 0.459829 1.59428 0.459829 1.02706 1.02706C0.459829 1.59428 0.459829 2.51394 1.02706 3.08117L4.44589 6.5L1.02223 9.94532C0.45829 10.5128 0.462901 11.4306 1.03252 11.9924C1.59787 12.55 2.50725 12.5469 3.06873 11.9854L6.5 8.55411L9.93127 11.9854C10.4928 12.5469 11.4021 12.55 11.9675 11.9924C12.5371 11.4306 12.5417 10.5128 11.9778 9.94532L8.55411 6.5L11.9729 3.08117Z" fill="white"/>
+            </svg>
+             CATNAME is niet veilig thuis, stop de zoekactie</button>
+                <div class="catfound__button_tip">
+                    <p> We stoppen met zoeken zonder te posten in de zoekresultaten van sociale media </p>
+                </div>
+            </div>
+            <div class="catfound_button" style="display: flex; position: relative;">
+                <button class="catfound_red red_3"><svg style="position: relative; top: 5px;" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="red__path" d="M3.07978 11.0874C3.18389 11.1944 3.34669 11.1944 3.45079 11.0874L5.94541 8.52169C6.03492 8.42964 6.05214 8.30719 6.00686 8.19476C5.96196 8.08327 5.87254 8.01953 5.7599 8.01953H0.770675C0.658041 8.01953 0.568622 8.08327 0.52372 8.19476C0.47844 8.30719 0.495663 8.42964 0.585172 8.52169L3.07978 11.0874Z" fill="#B01C1C" stroke="#B01C1C"/>
+            <path class="red__path" d="M4.78888 3.92486L4.01646 3.28975V3.28975L4.78888 3.92486ZM9.42105 1.15373L9.22632 0.172874L9.42105 1.15373ZM14.7631 1.94464L14.2924 2.82694H14.2924L14.7631 1.94464ZM18.3899 5.93854L17.4663 6.32184L18.3899 5.93854ZM18.6549 11.3223L19.6117 11.6131H19.6117L18.6549 11.3223ZM15.4378 15.6517L14.8829 14.8198L14.8829 14.8198L15.4378 15.6517ZM4.61068 15.3646C4.21978 14.9745 4.21918 14.3413 4.60933 13.9504C4.99948 13.5595 5.63265 13.5589 6.02354 13.9491L4.61068 15.3646ZM1.9695 9C1.9695 6.91729 2.69304 4.89926 4.01646 3.28975L5.56129 4.55998C4.53191 5.8119 3.9695 7.38103 3.9695 9H1.9695ZM4.01646 3.28975C5.33984 1.68027 7.18111 0.578917 9.22632 0.172874L9.61578 2.13459C8.02351 2.45071 6.59071 3.30802 5.56129 4.55998L4.01646 3.28975ZM9.22632 0.172874C11.2715 -0.233165 13.3945 0.0811136 15.2338 1.06235L14.2924 2.82694C12.8609 2.06321 11.2081 1.81846 9.61578 2.13459L9.22632 0.172874ZM15.2338 1.06235C17.0731 2.0436 18.515 3.63127 19.3135 5.55523L17.4663 6.32184C16.8454 4.82589 15.7239 3.59064 14.2924 2.82694L15.2338 1.06235ZM19.3135 5.55523C20.112 7.47922 20.2174 9.62014 19.6117 11.6131L17.6981 11.0315C18.169 9.48212 18.0871 7.81776 17.4663 6.32184L19.3135 5.55523ZM19.6117 11.6131C19.006 13.606 17.7268 15.3272 15.9926 16.4837L14.8829 14.8198C16.2325 13.9198 17.2272 12.5809 17.6981 11.0315L19.6117 11.6131ZM15.9926 16.4837C14.2585 17.6402 12.1765 18.1607 10.1013 17.9567L10.297 15.9663C11.9127 16.1251 13.5334 15.7198 14.8829 14.8198L15.9926 16.4837ZM10.1013 17.9567C8.0261 17.7527 6.08565 16.8368 4.61068 15.3646L6.02354 13.9491C7.17105 15.0944 8.68126 15.8074 10.297 15.9663L10.1013 17.9567Z" fill="#B01C1C"/>
+            </svg>
+            
+             Ga verder met zoeken</button>
+                <div class="catfound__button_tip">
+                    <p style="top: 40px">Het zoeken naar katten gaat door met de mogelijkheid om de zoekparameters te wijzigen</p>
+                </div>
+            </div>
+        </div>
+        <div class="feedback__stars" style="display: none">
+            <p class="catfound__subtitle">Okee, de zoekactie wordt gestopt.</p>
+            <p class="catfound__title">Hoe was je ervaring met KattenRadar?</p>
+
+            <div class="stars_block">
+                <div class="review_star" id="star_1"><svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.5516 3.55737C30.735 3.18575 31.265 3.18575 31.4484 3.55737L38.6403 18.1298C39.4414 19.7531 40.99 20.8782 42.7814 21.1385L58.8631 23.4753C59.2732 23.5349 59.4369 24.0389 59.1402 24.3281L47.5034 35.6712C46.2071 36.9347 45.6156 38.7553 45.9216 40.5394L48.6687 56.556C48.7387 56.9645 48.31 57.276 47.9432 57.0831L33.5594 49.5211C31.9571 48.6787 30.0429 48.6787 28.4406 49.5211L14.0568 57.0831C13.69 57.276 13.2613 56.9645 13.3313 56.556L16.0784 40.5394C16.3844 38.7552 15.7929 36.9347 14.4966 35.6712L2.85984 24.3281C2.56309 24.0389 2.72684 23.5349 3.13695 23.4753L19.2186 21.1385C21.01 20.8782 22.5586 19.7531 23.3597 18.1298L30.5516 3.55737Z" fill="#F8A35B" fill-opacity="0.1" stroke="#F8A35B" stroke-width="5"/>
+                    </svg>
+                </div>
+                <div class="review_star" id="star_2"><svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.5516 3.55737C30.735 3.18575 31.265 3.18575 31.4484 3.55737L38.6403 18.1298C39.4414 19.7531 40.99 20.8782 42.7814 21.1385L58.8631 23.4753C59.2732 23.5349 59.4369 24.0389 59.1402 24.3281L47.5034 35.6712C46.2071 36.9347 45.6156 38.7553 45.9216 40.5394L48.6687 56.556C48.7387 56.9645 48.31 57.276 47.9432 57.0831L33.5594 49.5211C31.9571 48.6787 30.0429 48.6787 28.4406 49.5211L14.0568 57.0831C13.69 57.276 13.2613 56.9645 13.3313 56.556L16.0784 40.5394C16.3844 38.7552 15.7929 36.9347 14.4966 35.6712L2.85984 24.3281C2.56309 24.0389 2.72684 23.5349 3.13695 23.4753L19.2186 21.1385C21.01 20.8782 22.5586 19.7531 23.3597 18.1298L30.5516 3.55737Z" fill="#F8A35B" fill-opacity="0.1" stroke="#F8A35B" stroke-width="5"/>
+                    </svg>
+                </div>
+                <div class="review_star" id="star_3"><svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.5516 3.55737C30.735 3.18575 31.265 3.18575 31.4484 3.55737L38.6403 18.1298C39.4414 19.7531 40.99 20.8782 42.7814 21.1385L58.8631 23.4753C59.2732 23.5349 59.4369 24.0389 59.1402 24.3281L47.5034 35.6712C46.2071 36.9347 45.6156 38.7553 45.9216 40.5394L48.6687 56.556C48.7387 56.9645 48.31 57.276 47.9432 57.0831L33.5594 49.5211C31.9571 48.6787 30.0429 48.6787 28.4406 49.5211L14.0568 57.0831C13.69 57.276 13.2613 56.9645 13.3313 56.556L16.0784 40.5394C16.3844 38.7552 15.7929 36.9347 14.4966 35.6712L2.85984 24.3281C2.56309 24.0389 2.72684 23.5349 3.13695 23.4753L19.2186 21.1385C21.01 20.8782 22.5586 19.7531 23.3597 18.1298L30.5516 3.55737Z" fill="#F8A35B" fill-opacity="0.1" stroke="#F8A35B" stroke-width="5"/>
+                    </svg>
+                </div>
+                <div class="review_star" id="star_4"><svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.5516 3.55737C30.735 3.18575 31.265 3.18575 31.4484 3.55737L38.6403 18.1298C39.4414 19.7531 40.99 20.8782 42.7814 21.1385L58.8631 23.4753C59.2732 23.5349 59.4369 24.0389 59.1402 24.3281L47.5034 35.6712C46.2071 36.9347 45.6156 38.7553 45.9216 40.5394L48.6687 56.556C48.7387 56.9645 48.31 57.276 47.9432 57.0831L33.5594 49.5211C31.9571 48.6787 30.0429 48.6787 28.4406 49.5211L14.0568 57.0831C13.69 57.276 13.2613 56.9645 13.3313 56.556L16.0784 40.5394C16.3844 38.7552 15.7929 36.9347 14.4966 35.6712L2.85984 24.3281C2.56309 24.0389 2.72684 23.5349 3.13695 23.4753L19.2186 21.1385C21.01 20.8782 22.5586 19.7531 23.3597 18.1298L30.5516 3.55737Z" fill="#F8A35B" fill-opacity="0.1" stroke="#F8A35B" stroke-width="5"/>
+                    </svg>
+                </div>
+                <div class="review_star" id="star_5"><svg width="62" height="60" viewBox="0 0 62 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.5516 3.55737C30.735 3.18575 31.265 3.18575 31.4484 3.55737L38.6403 18.1298C39.4414 19.7531 40.99 20.8782 42.7814 21.1385L58.8631 23.4753C59.2732 23.5349 59.4369 24.0389 59.1402 24.3281L47.5034 35.6712C46.2071 36.9347 45.6156 38.7553 45.9216 40.5394L48.6687 56.556C48.7387 56.9645 48.31 57.276 47.9432 57.0831L33.5594 49.5211C31.9571 48.6787 30.0429 48.6787 28.4406 49.5211L14.0568 57.0831C13.69 57.276 13.2613 56.9645 13.3313 56.556L16.0784 40.5394C16.3844 38.7552 15.7929 36.9347 14.4966 35.6712L2.85984 24.3281C2.56309 24.0389 2.72684 23.5349 3.13695 23.4753L19.2186 21.1385C21.01 20.8782 22.5586 19.7531 23.3597 18.1298L30.5516 3.55737Z" fill="#F8A35B" fill-opacity="0.1" stroke="#F8A35B" stroke-width="5"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="stars_skip_wrapper">
+                <p class="stars__skip">Skip</p>
+                <img src="img/icons/right.svg" alt="Right">
+            </div>
+        </div>
+        <div class="feedback_review" style="display: none;">
+            <p class="catfound__title">Help ons en andere kattenbaasjes in nood door sterren te geven op internet:</p>
+
+            <div style="align-items: center;">
+                <img class="reviews__img" src="img/dashboard/icons/reviews__img.svg" alt="Reviews">
+            </div>
+
+            <!-- 5 STARS -->
+
+            <div class="feedback_rev_buttons">
+                <a href="#">
+                    <div class="feedback_button">
+                        <div class="feedback_button_wrapper">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.822266 4.4589C1.01719 4.04578 1.25429 3.65739 1.52485 3.28937C2.482 1.98457 3.71844 1.04924 5.23562 0.487748C6.19132 0.134272 7.18192 -0.0257378 8.20162 0.00335486C10.1086 0.0586309 11.7771 0.729217 13.2274 1.95984C13.271 1.9962 13.2608 2.01366 13.2274 2.04711C12.4826 2.79043 11.7378 3.53375 10.996 4.27998C10.9509 4.32652 10.9261 4.31343 10.8854 4.27998C10.3036 3.81886 9.64898 3.51193 8.92166 3.36356C6.62043 2.89807 4.31048 4.21597 3.53806 6.43283C3.52934 6.45756 3.5177 6.48229 3.50897 6.50556C3.38678 6.41392 3.26459 6.32373 3.14241 6.23064C2.36854 5.64151 1.59613 5.04948 0.822266 4.4589Z" fill="#F8A35B"/>
+                        <path d="M3.50604 9.48438C3.60787 9.76657 3.71987 10.0459 3.87116 10.3062C4.57665 11.5252 5.6109 12.2991 6.98552 12.6147C7.49319 12.7311 8.00668 12.7457 8.52307 12.702C9.18493 12.6467 9.81624 12.4867 10.4054 12.1754C10.4926 12.1289 10.5785 12.078 10.6643 12.03C10.9145 12.2249 11.1647 12.4198 11.4149 12.6133C12.0127 13.0773 12.612 13.5413 13.2099 14.0054C12.8899 14.3138 12.5349 14.58 12.1597 14.8185C11.2651 15.3858 10.2905 15.7393 9.24602 15.9051C8.78781 15.9779 8.3267 16.0069 7.86267 15.9982C6.28876 15.9662 4.8414 15.5226 3.53368 14.6454C2.37579 13.8701 1.48556 12.8548 0.852792 11.6125C0.841155 11.5892 0.830973 11.5645 0.819336 11.5398C1.15972 11.2794 1.49865 11.019 1.83903 10.7586C2.39616 10.3339 2.95183 9.90913 3.50604 9.48438Z" fill="#F8A35B"/>
+                        <path d="M13.2095 14.0052C12.6116 13.5412 12.0123 13.0772 11.4145 12.6132C11.1643 12.4182 10.9141 12.2233 10.6639 12.0298C10.8574 11.8975 11.0479 11.7593 11.2181 11.5964C11.7709 11.0742 12.1112 10.4341 12.2771 9.69661C12.2931 9.62534 12.2523 9.63988 12.2145 9.63988C11.637 9.63988 11.061 9.63988 10.4835 9.63988C9.68201 9.63988 8.87906 9.63988 8.07755 9.64134C8.015 9.64134 7.99609 9.62825 7.99609 9.56279C7.999 8.58091 7.999 7.59903 7.99609 6.61861C7.99609 6.55752 8.01209 6.54297 8.07173 6.54297C10.5068 6.54442 12.9433 6.54442 15.3784 6.54297C15.4424 6.54297 15.4584 6.56624 15.47 6.62152C15.6155 7.26592 15.6576 7.9176 15.6184 8.57655C15.5573 9.60788 15.3478 10.6043 14.9361 11.5542C14.5361 12.475 13.9761 13.2837 13.2459 13.9747C13.2371 13.9863 13.2226 13.9951 13.2095 14.0052Z" fill="#F8A35B"/>
+                        <path d="M3.50539 9.48279C2.94972 9.90754 2.39551 10.3323 1.83984 10.757C1.49946 11.0174 1.16053 11.2778 0.820142 11.5382C0.619402 11.1425 0.460847 10.7294 0.334294 10.3032C0.0390037 9.3126 -0.0584567 8.30017 0.0331852 7.27175C0.119008 6.30441 0.372115 5.38218 0.793958 4.50794C0.802686 4.49049 0.812868 4.47449 0.821596 4.45703C1.59401 5.04907 2.36787 5.6411 3.14028 6.23168C3.26102 6.32478 3.38466 6.41497 3.50685 6.50661C3.4443 6.73499 3.3803 6.96191 3.34102 7.1961C3.21447 7.95397 3.26538 8.70019 3.49376 9.43333C3.49812 9.44933 3.50103 9.46679 3.50539 9.48279Z" fill="#F8A35B"/>
+                        </svg>
+                            <p>Google</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="feedback_button">
+                        <div class="feedback_button_wrapper">
+                            <svg width="8" height="17" viewBox="0 0 8 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.30035 16.9981H5.06914V9.18312H7.37786L7.725 6.50216H5.06914V4.79572C5.06914 4.02197 5.28663 3.49498 6.39498 3.49498H7.80029V1.10261C7.55771 1.06915 6.71703 0.998047 5.73834 0.998047C3.6973 0.998047 2.30035 2.24442 2.30035 4.53223V6.50635H0V9.1873H2.30035V16.9981ZM5.43075 16.9981C5.44747 16.9927 5.46418 16.9872 5.48086 16.9817L5.47651 16.9981H5.43075Z" fill="#F8A35B"/>
+                            </svg>
+
+                            <p>Facebook</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="feedback_button">
+                        <div class="feedback_button_wrapper">
+                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.7952 6.13107H10.3818L8.40068 0.0273438L6.41338 6.13107L0 6.1255L5.19399 9.90132L3.20669 15.9995L8.40068 12.2292L13.5885 15.9995L11.6074 9.90132L16.7952 6.13107Z" fill="#F8A35B"/>
+                            <path d="M12.053 11.2834L11.6071 9.90234L8.40039 12.2303L12.053 11.2834Z" fill="#C8742E"/>
+                            <path d="M16.8014 6.10621H10.3855L8.40378 0L6.41585 6.10621L0 6.10002L5.19585 9.87769L3.20793 15.9777L8.40378 12.2062L13.5934 15.9777L11.6117 9.87769L16.8014 6.10621Z" fill="#F8A35B"/>
+                            <path d="M12.0571 11.2599L11.6112 9.87891L8.40332 12.2074L12.0571 11.2599Z" fill="#C8742E"/>
+                            </svg>
+                            <p>Trust Pilot</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- 1 - 4 STARS -->
+        <div class="feedback_reviews" style="display: none;">
+            <p class="catfound__title">Hoe was je ervaring met KattenRadar?</p>
+
+            <div class="feedback_rew_block">
+                <!-- BOT -->
+                <div class="chat__message">
+                    <img src="img/Avatar.png" alt="Avatar">
+                    <div class="chat__message_text">
+                        <img src="img/icons/Bubble_point.svg" alt="Point">
+                        <div class="chat__message_text_body">
+                            <p>Dankjewel voor het delen van je mening!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat__message">
+                    <img src="img/Avatar.png" alt="Avatar">
+                    <div class="chat__message_text">
+                        <img src="img/icons/Bubble_point.svg" alt="Point">
+                        <div class="chat__message_text_body">
+                            <p>Wat zouden we nog kunnen verbeteren aan de dienstverlening van KattenRadar?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback__input">
+                    <div class="feedback_border">
+                        <textarea name="feedback" id="feedback" placeholder="Typ hier..."></textarea>
+                        <div class="input__feedback">
+                            <svg class="feedback__send" width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24.5461 0H0.391435C-0.0830318 0 -0.126165 0.222118 0.262035 0.488659L6.55951 4.75332C6.94771 5.01986 7.24964 5.64179 7.24964 6.13045V13.5048C7.24964 13.9934 7.55158 14.1267 7.93978 13.8601L9.92391 12.3497C10.3121 12.0388 10.7866 12.1721 11.0022 12.6163L12.4688 15.6371C12.6844 16.0813 13.0726 16.1257 13.3746 15.7259L24.8481 0.710777C25.15 0.310965 24.9775 0 24.5461 0ZM20.1034 2.08791L10.4415 7.41873C9.96705 7.68527 9.57885 7.46316 9.57885 6.88565V5.55294C9.57885 4.97544 10.0102 4.39793 10.5278 4.26466L20.0171 1.82137C20.5779 1.68809 20.5779 1.82137 20.1034 2.08791Z" fill="#F8A35B"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <img class="bin__input_avatar" src="img/dashboard/icons/big__input.svg" alt="Big Input">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE EDIT -->
+
+    <div class="data__edit">
+        <div class="feedback_close">
+            <img class="popup_close popup_close_cat" src="img/homepage/close.svg" alt="Close">
+        </div>
+        <div class="data__edit_body">
+            <div class="data__edit_left">
+                <p class="catfound__title" style="text-align: left; margin-bottom: 20px;">Wijzig zoekactie</p>
+                <div class="data__edit_text">
+                    <p class="data__edit_subtitle">Change the text</p>
+                    <textarea name="desc__change" id="desc__change" placeholder="Typ hier..."></textarea>
+                </div>
+                <div class="data__edit_photo">
+                    <p class="data__edit_subtitle">Change the Photo</p>
+                    <input type="file" name="file" id="file" style="display: none;" onchange="encodeImage(this)">
+                    <img class="image__photo_upload" src="img/dashboard/icons/update_image.svg" alt="Upload">
+
+                    <div class="imagebox" style="display: none;">
+                        <img class="cat_image" src="img/dashboard/icons/cat_dashboard.png" alt="Cat Image">
+                        <div id="removeImg"><img src="img/dashboard/icons/trash.svg" alt="Trash"> Verwijderen</div>
+                    </div>
+                </div>
+                <div class="data__edit_price">
+                    <p>Verwerkingskosten</p>
+                    <p class="data_edit_price">€0</p>
+                </div>
+                <button class="data__edit_send" disabled="true">Betaal en start zoekactie</button>
+            </div>
+            <hr class="data__edit_line">
+            <div class="data__edit_right">
+                <div class="dash__ad">
+                    <div class="chat__right_phone dash__phone dash__phone_edit">
+                        <div class="chat__phone__body">
+                            <div class="chat__phone_text">
+                                <p class="chat__catname">Vermist <span>Simba</span></p>
+                                <p class="chat__last_loc">Laatst gezien: <span>Noorderstraat in
+                                        Amsterdam</span></p>
+                                <p class="chat__info">Bekijk schuurtjes en afsluitbare ruimtes</p>
+                                <p class="chat__see_cat"><span>Simba</span> gezien? Reageer via </p>
+                            </div>
+                            <img class="chat__phone__left" src="img/phone__left.svg" alt="Left Side">
+
+                            <img class="chat__phone__cat edit__cat_image" src="img/cat.png" alt="Cat">
+                        </div>
+                        <p class="chat__cat_desc chat_edit_cat_text"><span>kattenradar </span>Mogelijk opgesloten in schuren of bij gebou-wen. Erg mens vriendelijke kat makkelijk.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIPS INFO -->
+
+    <div class="tips__info">
+        <div class="feedback_close">
+            <img class="popup_close_tips" src="img/homepage/close.svg" alt="Close">
+        </div>
+        <p class="catfound__title tip__title_popup" style="text-align: left; margin-bottom: 20px;">Tip via website</p>
+
+        <div class="tip__data">
+            <p class="tip__data_title">Tip</p>
+
+            <p class="tip__data_text tip__desc">The marsh fritillary (Euphydryas aurinia) is a butterfly of the family Nymphalidae. Commonly distributed in the Palearctic region, the marsh fritillary's common name derives from one of its several habitats, marshland. The prolonged larval
+                stage lasts for approximately seven to.</p>
+            <div class="tips__loc">
+                <p class="tip__data_title">Locatie</p>
+                <div class="tip__data_adress">
+                    <img src="img/icons/marker.svg" alt="Marker">
+                    <p>Amsterdam Airport Schiphol (AMS)</p>
+                </div>
+            </div>
+            <div class="tip__data_time">
+                <div class="tip_time">
+                    <p class="tip__data_text">Datum</p>
+                    <div class="tip__data_block">
+                        <p class="tip__data_name" id="tip_day">01</p>
+                        <p class="tip__data_name center__data" id="tip_month">09</p>
+                        <p class="tip__data_name" id="tip_year">21</p>
+                    </div>
+                </div>
+                <div class="tip__time_block">
+                    <p class="tip__data_text">Tijd</p>
+                    <p class="tip__data_name" style="text-align: left" id="tip_time">12:00</p>
+                </div>
+            </div>
+            <div class="tip_contact">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.00041 8.00047C9.20991 8.00047 11.0006 6.20943 11.0006 4.00023C11.0006 1.79104 9.20991 0 7.00041 0C4.79091 0 3.00018 1.79104 3.00018 4.00023C3.00018 6.20943 4.79091 8.00047 7.00041 8.00047ZM8.58488 9.50056H5.41594C2.42545 9.50056 0 11.9257 0 14.9165C0 15.5147 0.485028 16 1.08319 16H12.9183C13.5164 16.0009 14.0008 15.5165 14.0008 14.9165C14.0008 11.9257 11.5757 9.50056 8.58488 9.50056Z" fill="#F8A35B"/>
+                        </svg>
+                <p>+123456789 </p>
+            </div>
+            <div class="tip_map">
+                <p class="tip__data_text">Plaats op de kaart</p>
+                <div id="tip__mapbox">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="js/default_script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFA6udGwPSgJt_QacZp9tatCTazR32t2U&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="js/leaflet-gesture-handling.min.js"></script>
+    <script src="js/dashboard_script.js"></script>
+</body>
+
+</html>

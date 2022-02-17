@@ -1,0 +1,26 @@
+<svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1382_28514)">
+<path d="M18 0H0V12H18V0Z" fill="white"/>
+<path d="M18 8.05273H0V12.0528H18V8.05273Z" fill="#21468B"/>
+<path d="M18 0H0V4H18V0Z" fill="#AE1C28"/>
+<g clip-path="url(#clip1_1382_28514)">
+<path d="M-2.8125 12V-0.6H20.8125V12H-2.8125Z" fill="#012169"/>
+<path d="M-2.8125 12L20.8125 -0.6L-2.8125 12ZM20.8125 12L-2.8125 -0.6L20.8125 12Z" fill="black"/>
+<path d="M20.8125 12L-2.8125 -0.600001M-2.8125 12L20.8125 -0.600001L-2.8125 12Z" stroke="white" stroke-width="2.1"/>
+<path d="M-2.8125 12L20.8125 -0.6L-2.8125 12ZM20.8125 12L-2.8125 -0.6L20.8125 12Z" fill="black"/>
+<path d="M20.8125 12L-2.8125 -0.600001M-2.8125 12L20.8125 -0.600001L-2.8125 12Z" stroke="#C8102E" stroke-width="1.4"/>
+<path d="M9 12V-0.6V12ZM-2.8125 5.7H20.8125H-2.8125Z" fill="black"/>
+<path d="M-2.8125 5.7H20.8125M9 12V-0.600001V12Z" stroke="white" stroke-width="3.5"/>
+<path d="M9 12V-0.6V12ZM-2.8125 5.7H20.8125H-2.8125Z" fill="black"/>
+<path d="M-2.8125 5.7H20.8125M9 12V-0.600001V12Z" stroke="#C8102E" stroke-width="2.1"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1382_28514">
+<rect width="18" height="12" rx="2" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1382_28514">
+<rect width="23.625" height="12.6" fill="white" transform="matrix(1 0 0 -1 -2.8125 12)"/>
+</clipPath>
+</defs>
+</svg>
